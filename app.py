@@ -21,10 +21,10 @@ class Guide(db.Model):
 
 class GuideScheme(ma.Schema):
     class Meta:
-        fields = ('title', 'content')
+        fields = ('title', 'content', 'id')
 
 guide_schema = GuideScheme()
-guide_schemas = GuideScheme(many=True)
+guides_schema = GuideScheme(many=True)
 
 # Endpoint to create a new guide
 @app.route('/guide', methods=["POST"])
@@ -41,6 +41,13 @@ def add_guide():
 
     return guide_schema.jsonify(guide)
 
+
+# Endpoint to query all guides
+@app.route("/guides", methods=["GET"])
+def get_guides():
+  all_guides = Guide.query.all()
+  result = guides_schema.dump(all_guides)
+  return jsonify(result)
 
 if __name__ == '__main__':
     app.run(debug=True)
