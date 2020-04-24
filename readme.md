@@ -1,3 +1,3 @@
 # Flask App
 
-The following app was built during my course with Bottega.  I has full CRUD functionality.
+The following app was built during my course with Bottega.  It has full CRUD functionality.
